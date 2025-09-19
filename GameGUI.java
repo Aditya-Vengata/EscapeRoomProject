@@ -143,7 +143,7 @@ public class GameGUI extends JComponent
       // check if off grid horizontally and vertically
       if ( (newX < 0 || newX > WIDTH-SPACE_SIZE) || (newY < 0 || newY > HEIGHT-SPACE_SIZE) )
       {
-        System.out.println ("OFF THE GRID!");
+        System.out.println ("Off the grid!!");
         return -offGridVal;
       }
 
@@ -160,25 +160,25 @@ public class GameGUI extends JComponent
         // moving RIGHT, check to the right
         if ((incrx > 0) && (x <= startX) && (startX <= newX) && (y >= startY) && (y <= endY))
         {
-          System.out.println("A WALL IS IN THE WAY");
+          System.out.println("A wall is in the way!");
           return -hitWallVal;
         }
         // moving LEFT, check to the left
         else if ((incrx < 0) && (x >= startX) && (startX >= newX) && (y >= startY) && (y <= endY))
         {
-          System.out.println("A WALL IS IN THE WAY");
+          System.out.println("A wall is in the way!");
           return -hitWallVal;
         }
         // moving DOWN check below
         else if ((incry > 0) && (y <= startY && startY <= newY && x >= startX && x <= endX))
         {
-          System.out.println("A WALL IS IN THE WAY");
+          System.out.println("A wall is in the way!");
           return -hitWallVal;
         }
         // moving UP check above
         else if ((incry < 0) && (y >= startY) && (startY >= newY) && (x >= startX) && (x <= endX))
         {
-          System.out.println("A WALL IS IN THE WAY");
+          System.out.println("A wall is in the way!");
           return -hitWallVal;
         }     
       }
@@ -190,7 +190,7 @@ public class GameGUI extends JComponent
         if (t.getWidth() > 0 && t.contains(newX, newY))
         {
           stepOnTrap = true;
-          System.out.println("YOU STEPPED ON A TRAP!");
+          System.out.println("Oh no! You stepped on a trap!");
           break;
         }
       }
@@ -227,7 +227,7 @@ public class GameGUI extends JComponent
         // if new location of player has a trap, return true
         if (r.contains(px, py))
         {
-          System.out.println("A TRAP IS AHEAD");
+          System.out.println("A trap is ahead!");
           return true;
         }
       }
@@ -261,7 +261,7 @@ public class GameGUI extends JComponent
         if (r.getWidth() > 0)
         {
           r.setSize(0,0);
-          System.out.println("TRAP IS SPRUNG!");
+          System.out.println("Trap is sprung!");
           // if all traps are sprung, respawn new ones
           if (allDepleted(traps))
           {
@@ -273,7 +273,7 @@ public class GameGUI extends JComponent
       }
     }
     // no trap here, penalty
-    System.out.println("THERE IS NO TRAP HERE TO SPRING");
+    System.out.println("There is no trap here!");
     return -trapVal;
   }
 
@@ -293,7 +293,7 @@ public class GameGUI extends JComponent
       // if location has a prize, pick it up
       if (p.getWidth() > 0 && p.contains(px, py))
       {
-        System.out.println("YOU PICKED UP A PRIZE!");
+        System.out.println("You picked up a prize!");
         p.setSize(0,0);
         // if all prizes are picked up, respawn new ones
         if (allDepleted(prizes))
@@ -304,7 +304,7 @@ public class GameGUI extends JComponent
         return prizeVal;
       }
     }
-    System.out.println("OOPS, NO PRIZE HERE");
+    System.out.println("Oops, there isn't a prize here!");
     return -prizeVal;  
   }
 
@@ -525,12 +525,12 @@ public class GameGUI extends JComponent
     double px = playerLoc.getX();
     if (px > (WIDTH - 2*SPACE_SIZE))
     {
-      System.out.println("YOU MADE IT!");
+      System.out.println("You made it!");
       score = endVal;
     }
     else
     {
-      System.out.println("OOPS, YOU QUIT TOO SOON!");
+      System.out.println("Oops, you quit too soon!");
       score = -endVal;
     }
     return score;

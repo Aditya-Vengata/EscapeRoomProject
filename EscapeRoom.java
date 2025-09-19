@@ -42,8 +42,8 @@ public class EscapeRoom
   {      
     // The welcome message
     System.out.println("Welcome to EscapeRoom!");
-    System.out.println("Get to the other side of the room, avoiding walls and invisible traps,");
-    System.out.println("pick up all the prizes.\n");
+    System.out.println("Get to the other side of the room, avoiding walls and invisible traps, and pick up all the prizes.");
+    System.out.println("Need help? Type 'help' or '?' for a list of commands.\n");
     
     GameGUI game = new GameGUI();
     game.createBoard();
@@ -120,13 +120,13 @@ public class EscapeRoom
           score += game.movePlayer(0, 2*m);
           break;
         case "jump":
-          System.out.print("Jump which direction (r/l/u/d)? > ");
+          System.out.print("Which direction would you like to jump (r/l/u/d)? > ");
           String jdir = in.nextLine().trim().toLowerCase();
           if (jdir.equals("r")) score += game.movePlayer(2*m, 0);
           else if (jdir.equals("l")) score += game.movePlayer(-2*m, 0);
           else if (jdir.equals("u")) score += game.movePlayer(0, -2*m);
           else if (jdir.equals("d")) score += game.movePlayer(0, 2*m);
-          else { System.out.println("Invalid jump direction"); score -= 1; }
+          else { System.out.println("Invalid jump direction!"); score -= 1; }
           break;
 
         // Spring trap ahead of player in a direction
@@ -157,7 +157,7 @@ public class EscapeRoom
           else if (sdir.equals("l")) score += game.springTrap(-m, 0);
           else if (sdir.equals("u")) score += game.springTrap(0, -m);
           else if (sdir.equals("d")) score += game.springTrap(0, m);
-          else { System.out.println("Invalid spring direction"); score -= 1; }
+          else { System.out.println("Invalid spring direction!"); score -= 1; }
           break;
 
         case "pickup":
@@ -175,7 +175,7 @@ public class EscapeRoom
           break;
 
         case "replay":
-          System.out.println("steps=" + game.getSteps());
+          System.out.println("steps = " + game.getSteps());
           score += game.replay();
           break;
 
@@ -197,7 +197,7 @@ public class EscapeRoom
             game.createBoard();
             score += 3; // Bonus for removing trap
           } else {
-            System.out.println("No traps to remove!");
+            System.out.println("There is no traps to remove!");
             score -= 2; // Penalty for trying to remove non-existent trap
           }
           break;
@@ -218,11 +218,11 @@ public class EscapeRoom
         score -= 1; // Penalty for invalid command
       }
 
-      System.out.println("score=" + score);
+      System.out.println("score = " + score);
       // Win condition: score > 50
       if (score > 50)
       {
-        System.out.println("YOU WIN! Score exceeded 50.");
+        System.out.println("You win! Score exceeded 50.");
         game.close();
         won = true;
         play = false;
@@ -236,8 +236,8 @@ public class EscapeRoom
       score += game.endGame();
     }
 
-    System.out.println("score=" + score);
-    System.out.println("steps=" + game.getSteps());
+    System.out.println("Score = " + score);
+    System.out.println("Steps = " + game.getSteps());
   }
 }
 
